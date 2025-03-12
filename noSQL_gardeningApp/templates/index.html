@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>My Plants</h2>
+    <ul>
+        {% for plant in plants %}
+            <li>
+                {{ plant.name }} ({{ plant.type }}) - Water every {{ plant.watering_frequency }} days
+                <form action="{{ url_for('delete_plant', plant_id=plant._id) }}" method="POST" style="display:inline;">
+                    <button type="submit">❌ Delete</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{{ url_for('add_plant') }}">Add a New Plant</a>
+{% endblock %}
